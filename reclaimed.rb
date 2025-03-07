@@ -21,6 +21,11 @@ class Reclaimed < Formula
     sha256 "093810748fe01db0d451fabcf2c1ac2688caefd232d4a5df9a14f08c74f79e9e"
   end
 
+  resource "setuptools-scm" do
+    url "https://files.pythonhosted.org/packages/eb/b1/0723c86210b12b4b6139eb6579b9242d1ea37b5883216bd0b11d562f429a/setuptools_scm-8.0.4.tar.gz"
+    sha256 "b5f43ff6800669595706ee0eff077fe282b8c264e2f45c44dd20b016b56c0b17"
+  end
+
   # Runtime dependencies
   resource "click" do
     url "https://files.pythonhosted.org/packages/96/d3/f04c7bfcf5c1862a2a5b845c6b2b360488cf47af55dfa79c98f6a6bf98b5/click-8.1.7.tar.gz"
@@ -38,6 +43,8 @@ class Reclaimed < Formula
   end
 
   def install
+    # Set static version for build since we don't have git metadata in the tarball
+    ENV["SETUPTOOLS_SCM_PRETEND_VERSION"] = version
     virtualenv_install_with_resources
   end
 
