@@ -23,8 +23,8 @@ class Reclaimed < Formula
   end
 
   resource "textual" do
-    url "https://files.pythonhosted.org/packages/b5/a8/6a1a0f9a0d1d89e7a9b1a0e6f8d7b8f6a0fafbbc0b8c3f392b4b9ef9e45a/textual-0.52.1.tar.gz"
-    sha256 "08dc36c19550ef75a9e2cb2c2c7d51e8f8d2a1d7da0c9f6c6389b7e65a7cd09a"
+    url "https://files.pythonhosted.org/packages/bb/ce/b224ccc05260871da8df640e7cd8ca0a5e38721fddb6733650195402841e/textual-0.52.1.tar.gz"
+    sha256 "4232e5c2b423ed7c63baaeb6030355e14e1de1b9df096c9655b68a1e60e4de5f"
   end
 
   def install
