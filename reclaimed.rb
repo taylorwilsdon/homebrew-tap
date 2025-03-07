@@ -10,8 +10,18 @@ class Reclaimed < Formula
 
   depends_on "python@3.11"
   
-  # Add all dependencies from pyproject.toml
+  # Build dependencies
+  resource "hatchling" do
+    url "https://files.pythonhosted.org/packages/d8/a1/7dd1caa87c0b15c04c6291e25112e5d082cce02ee87f221a8be1d594f857/hatchling-1.21.1.tar.gz"
+    sha256 "bba440453a224e7d4478457fa2e8d8c3633765bafa02975a6b53b9bf917980bc"
+  end
 
+  resource "hatch-vcs" do
+    url "https://files.pythonhosted.org/packages/f5/c9/54bb4fa27b4e4a014ef3bb17710cdf692b3aa2cbc7953da885f1bf7e06ea/hatch_vcs-0.4.0.tar.gz"
+    sha256 "093810748fe01db0d451fabcf2c1ac2688caefd232d4a5df9a14f08c74f79e9e"
+  end
+
+  # Runtime dependencies
   resource "click" do
     url "https://files.pythonhosted.org/packages/96/d3/f04c7bfcf5c1862a2a5b845c6b2b360488cf47af55dfa79c98f6a6bf98b5/click-8.1.7.tar.gz"
     sha256 "ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de"
