@@ -45,12 +45,6 @@ class Reclaimed < Formula
   def install
     # Set static version for build since we don't have git metadata in the tarball
     ENV["SETUPTOOLS_SCM_PRETEND_VERSION"] = version
-    
-    # Set PIP_NO_BUILD_ISOLATION to avoid the dependency conflicts without requiring UV
-    # This is the key environment variable that prevents the issue seen in the error
-    ENV["PIP_NO_BUILD_ISOLATION"] = "1"
-    
-    # Use the standard Homebrew Python installation mechanism
     virtualenv_install_with_resources
   end
 
