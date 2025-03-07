@@ -3,9 +3,9 @@ class Reclaimed < Formula
 
   desc "A powerful disk usage analyzer with iCloud support"
   homepage "https://github.com/taylorwilsdon/reclaimed"
-  version "0.1.6"
+  version "0.1.7"
   url "https://github.com/taylorwilsdon/reclaimed/archive/refs/tags/v#{version}.tar.gz"
-  sha256 "5baacc4076063c649a9f143182f1af9370fedcbef15de777da0a6782ce24839b" # Will be updated by release script
+  sha256 "4831097bbffd108dcc088ddd6a3aa6a9c6d5c01ffbe2cccfc98dbec755f7cb70"
   license "MIT"
 
   depends_on "python@3.11"
