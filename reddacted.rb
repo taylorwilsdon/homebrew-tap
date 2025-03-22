@@ -3,8 +3,8 @@ class Reddacted < Formula
 
   desc "Analyze Reddit comments for PII and perform sentiment analysis"
   homepage "https://github.com/taylorwilsdon/reddacted"
-  url "https://github.com/taylorwilsdon/reddacted/archive/refs/tags/v0.1.6.tar.gz"
-  sha256 "934d84d0a6dbc32b8c719922c33ff5b38437d7ee134e5884b2ba34b46aab105b"
+  url "https://github.com/taylorwilsdon/reddacted/archive/refs/tags/v0.1.7.tar.gz"
+  sha256 "01e711f8cc3529aa1b5800a7307a4ad8595a7aafe09e5ce1f2eec68098bedcd8"
   license "MIT"
 
   depends_on "python@3.11"
