@@ -13,18 +13,31 @@ class Reddacted < Formula
   # Python dependencies will be managed by brew update-python-resources
   
   def install
-    venv = virtualenv_create(libexec, Formula["python@3.11"].opt_bin/"python3.11")
+    # Create virtualenv with pip
+    venv = virtualenv_create(libexec, "python3.11")
+    venv.pip_install "pip"
     
-    # Install all dependencies first
+    # Install all dependencies
     resources.each do |r|
-      venv.pip_install r
+      # Handle packages with Rust extensions
+      if ["pydantic-core", "regex"].include? r.name
+        # These need special handling for Rust components
+        r.stage do
+          venv.pip_install "--no-binary", ":all:", "."
+        end
+      else
+        venv.pip_install r
+      end
     end
-    
-    # Then install the package itself
-    venv.pip_install_and_link buildpath, build_isolation: true
+
+    # Install the package itself
+    venv.pip_install_and_link buildpath
   end
 
   test do
+    # Verify CLI works
     system bin/"reddacted", "--help"
+    # Verify Python module is importable
+    system libexec/"bin/python", "-c", "import reddacted"
   end
 end
