@@ -57,11 +57,6 @@ class Reddacted < Formula
     sha256 "2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed"
   end
 
-  resource "gnureadline" do
-    url "https://files.pythonhosted.org/packages/cb/92/20723aa239b9a8024e6f8358c789df8859ab1085a1ae106e5071727ad20f/gnureadline-8.2.13.tar.gz"
-    sha256 "c9b9e1e7ba99a80bb50c12027d6ce692574f77a65bf57bc97041cf81c0f49bd1"
-  end
-
   resource "h11" do
     url "https://files.pythonhosted.org/packages/f5/38/3af3d3633a34a3316095b39c8e8fb4853a28a536e55d347bd8d8e9a14b03/h11-0.14.0.tar.gz"
     sha256 "8f19fbbe99e72420ff35c00b27a34cb9937e902a8b810e2c88300c6f0a3b699d"
@@ -253,13 +248,13 @@ class Reddacted < Formula
       if ["pydantic-core", "regex"].include? r.name
         # These need special handling for Rust components
         r.stage do
-          venv.pip_install "--no-binary", ":all:", "."
+          # Fix: Use system command directly instead of passing multiple args to pip_install
+          system "#{libexec}/bin/pip", "install", "--no-binary", ":all:", "."
         end
       else
         venv.pip_install r
       end
     end
-
     # Install the package itself
     venv.pip_install_and_link buildpath
   end
