@@ -14,6 +14,11 @@ class Reddacted < Formula
     sha256 "5b392198293c0b9225d459be8ba710cf8248f1ee33006bdeb3d92fb0012592b4"
   end
 
+  resource "autopage" do
+    url "https://files.pythonhosted.org/packages/9f/9e/559b0cfdba9f3ed6744d8cbcdbda58880d3695c43c053a31773cefcedde3/autopage-0.5.2.tar.gz"
+    sha256 "826996d74c5aa9f4b6916195547312ac6384bac3810b8517063f293248257b72"
+  end
+
   resource "praw" do
     url "https://files.pythonhosted.org/packages/4c/52/7dd0b3d9ccb78e90236420ef6c51b6d9b2400a7229442f0cfcf2258cce21/praw-7.8.1.tar.gz"
     sha256 "3c5767909f71e48853eb6335fef7b50a43cbe3da728cdfb16d3be92904b0a4d8"
