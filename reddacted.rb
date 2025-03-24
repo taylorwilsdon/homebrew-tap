@@ -208,7 +208,7 @@ class Reddacted < Formula
       if ["pydantic-core", "regex"].include? r.name
         # These need special handling for Rust components
         r.stage do
-          venv.pip_install "--no-binary", ":all:", "."
+          system "#{libexec}/bin/pip", "install", "--no-binary", ":all:", "."
         end
       else
         venv.pip_install r
