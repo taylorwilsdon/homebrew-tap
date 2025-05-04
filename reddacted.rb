@@ -3,8 +3,8 @@ class Reddacted < Formula
 
   desc "Analyze Reddit comments for PII and other sensitive information using local or OpenAI API compatible LLMs and perform sentiment analysis, edit and remove comments."
   homepage "https://github.com/taylorwilsdon/reddacted"
-  url "https://github.com/taylorwilsdon/reddacted/archive/refs/tags/v0.2.5.tar.gz"
-  sha256 "52469e5e82c80251efaa6ac577079df1b5ec80f049c54777113fffc5e1d1437f"
+  url "https://github.com/taylorwilsdon/reddacted/archive/refs/tags/v0.2.6.tar.gz"
+  sha256 "869931b48356f103c9b0a1a38e937faecf2b8c4c6da4fa53f2de41e62e5ee507"
   license "MIT"
 
   depends_on "python@3.11"
