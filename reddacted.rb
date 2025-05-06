@@ -1,17 +1,17 @@
 class Reddacted < Formula
   include Language::Python::Virtualenv
 
-  desc "Analyze Reddit comments for PII and other sensitive information using local or OpenAI API compatible LLMs and perform sentiment analysis, edit and remove comments."
+  desc "CLI to analyze Reddit comments for PII, sentiment & manage content via LLMs"
   homepage "https://github.com/taylorwilsdon/reddacted"
   url "https://github.com/taylorwilsdon/reddacted/archive/refs/tags/v0.2.6.tar.gz"
   sha256 "869931b48356f103c9b0a1a38e937faecf2b8c4c6da4fa53f2de41e62e5ee507"
   license "MIT"
 
+  depends_on "rust" => :build # Required for building Rust extensions
   depends_on "python@3.11"
-  depends_on "rust" => :build  # Required for building Rust extensions
 
   # Python dependencies will be managed by brew update-python-resources
-  
+
   resource "annotated-types" do
     url "https://files.pythonhosted.org/packages/ee/67/531ea369ba64dcff5ec9c3402f9f51bf748cec26dde048a2f973a4eea7f5/annotated_types-0.7.0.tar.gz"
     sha256 "aff07c09a53a08bc8cfccb9c85b05f1aa9a2a6f23728d790723543408344ce89"
@@ -201,11 +201,14 @@ class Reddacted < Formula
     # Create virtualenv
     venv = virtualenv_create(libexec, "python3")
     venv.pip_install "pip"
-    
+
+    # Define packages with Rust extensions
+    rust_extension_packages = ["pydantic-core", "regex"]
+
     # Install all dependencies
     resources.each do |r|
       # Handle packages with Rust extensions
-      if ["pydantic-core", "regex"].include? r.name
+      if rust_extension_packages.include? r.name
         # These need special handling for Rust components
         r.stage do
           system "#{libexec}/bin/pip", "install", "--no-binary", ":all:", "."
