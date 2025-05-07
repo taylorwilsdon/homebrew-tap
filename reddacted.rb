@@ -202,4 +202,3 @@ class Reddacted < Formula
     # Verify Python module is importable
     system libexec/"bin/python", "-c", "import reddacted"
   end
-end
