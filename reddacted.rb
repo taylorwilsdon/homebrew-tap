@@ -7,8 +7,7 @@ class Reddacted < Formula
   sha256 "869931b48356f103c9b0a1a38e937faecf2b8c4c6da4fa53f2de41e62e5ee507"
   license "MIT"
 
-  depends_on "rust" => :build # Required for building Rust extensions
-  depends_on "python@3.11"
+  depends_on "python@3.13"
 
   # Python dependencies will be managed by brew update-python-resources
 
@@ -122,24 +121,9 @@ class Reddacted < Formula
     sha256 "b7b2b5a1d04406e086ab4e79988dc794df16059862f329f4c6a43ed09986c335"
   end
 
-  resource "pydantic" do
-    url "https://files.pythonhosted.org/packages/b7/ae/d5220c5c52b158b1de7ca89fc5edb72f304a70a4c540c84c8844bf4008de/pydantic-2.10.6.tar.gz"
-    sha256 "ca5daa827cce33de7a42be142548b0096bf05a7e7b365aebfa5f8eeec7128236"
-  end
-
-  resource "pydantic-core" do
-    url "https://files.pythonhosted.org/packages/fc/01/f3e5ac5e7c25833db5eb555f7b7ab24cd6f8c322d3a3ad2d67a952dc0abc/pydantic_core-2.27.2.tar.gz"
-    sha256 "eb026e5a4c1fee05726072337ff51d1efb6f59090b7da90d30ea58625b1ffb39"
-  end
-
   resource "pygments" do
     url "https://files.pythonhosted.org/packages/7c/2d/c3338d48ea6cc0feb8446d8e6937e1408088a72a39937982cc6111d17f84/pygments-2.19.1.tar.gz"
     sha256 "61c16d2a8576dc0649d9f39e089b5f02bcd27fba10d8fb4dcc28173f7a45151f"
-  end
-
-  resource "regex" do
-    url "https://files.pythonhosted.org/packages/8e/5f/bd69653fbfb76cf8604468d3b4ec4c403197144c7bfe0e6a5fc9e02a07cb/regex-2024.11.6.tar.gz"
-    sha256 "7ab159b063c52a0333c884e4679f8d7a85112ee3078fe3d9004b2dd875585519"
   end
 
   resource "requests" do
@@ -202,19 +186,9 @@ class Reddacted < Formula
     venv = virtualenv_create(libexec, "python3")
     venv.pip_install "pip"
 
-    # Define packages with Rust extensions
-    rust_extension_packages = ["pydantic-core", "regex"]
-
     # Install all dependencies
     resources.each do |r|
-      # Handle packages with Rust extensions
-      if rust_extension_packages.include? r.name
-        # These need special handling for Rust components
-        r.stage do
-          system "#{libexec}/bin/pip", "install", "--no-binary", ":all:", "."
-        end
-      else
-        venv.pip_install r
+      venv.pip_install r
       end
     end
 
