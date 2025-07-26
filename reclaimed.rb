@@ -7,7 +7,7 @@ class Reclaimed < Formula
   sha256 "63ac4ed58630dcd78d06a2d802dbec276c4c6808c431cfdfc4f372aece2e26b3"
   license "MIT"
 
-  depends_on "python@3.11"
+  depends_on "python"
 
   # Runtime dependencies only - no build dependencies needed
   resource "click" do
